@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1e1b4b">
+    <meta name="description"
+        content="Gestão simples e rápida de orçamentos em PDF para prestadores de serviço e autônomos.">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Use OrçaFácil App | Gestão Simples de Orçamentos</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/icons/favicon.ico?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png?v=3">
+
+    <!-- Fonte Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* =====================================================
+           GUIA DE ESTILO E PALETA OFICIAL - ORÇAFÁCIL APP
+           Azul Noturno: #0f172a | Azul Indigo: #1e1b4b
+           Verde Esmeralda: #10b981 | Fundo Gelo: #f8fafc
+           ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        :focus-visible {
+            outline: 3px solid #34d399;
+            outline-offset: 3px;
+        }
+
+        /* HEADER & NAVBAR */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 6%;
+            background-color: rgba(30, 27, 75, 0.98);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.15);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #10b981;
+        }
+
+        .desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+        }
+
+        .desktop-nav a {
+            color: #cbd5e1;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .desktop-nav a:hover {
+            color: #ffffff;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-login {
+            color: #cbd5e1;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .btn-login:hover {
+            color: #ffffff;
+        }
+
+        .btn-signup {
+            background-color: #10b981;
+            color: #ffffff;
+            padding: 0.6rem 1.3rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+        }
+
+        .btn-signup:hover {
+            background-color: #059669;
+            transform: translateY(-1px);
+        }
+
+        .menu-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 18px;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            background: none;
+            border: 0;
+            padding: 0;
+        }
+
+        .menu-icon span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: background-color 0.2s;
+        }
+
+        .menu-icon:hover span {
+            background-color: #10b981;
+        }
+
+        /* DRAWER MENU MOBILE */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: -10px 0 30px rgba(15, 23, 42, 0.15);
+            z-index: 200;
+            transition: right 0.3s ease;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-overlay.active {
+            right: 0;
+        }
+
+        .close-btn {
+            align-self: flex-end;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #64748b;
+            background: none;
+            border: none;
+            margin-bottom: 2rem;
+        }
+
+        .menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .menu-links a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            transition: color 0.2s;
+        }
+
+        .menu-links a:hover {
+            color: #1e1b4b;
+        }
+
+        .menu-links a.highlight-link {
+            color: #10b981;
+            font-weight: 800;
+        }
+
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(4px);
+            display: none;
+            z-index: 150;
+        }
+
+        .backdrop.active {
+            display: block;
+        }
+
+        /* HERO SECTION */
+        .hero-wrapper {
+            background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 65%, #f8fafc 100%);
+            padding: 5rem 1.5rem 6rem;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .hero {
+            max-width: 880px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-badge {
+            background-color: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34d399;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+            line-height: 1.15;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: #10b981;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 2.5rem;
+            max-width: 640px;
+            font-weight: 400;
+        }
+
+        .btn-primary {
+            background-color: #10b981;
+            color: #ffffff;
+            padding: 1.1rem 2.8rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background-color: #059669;
+            box-shadow: 0 14px 30px rgba(16, 185, 129, 0.45);
+        }
+
+        /* SEÇÃO SOBRE */
+        .about-section {
+            padding: 5rem 6% 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            color: #10b981;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #0f172a;
+            font-weight: 900;
+            margin-top: 0.3rem;
+        }
+
+        .section-header p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .about-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-4px);
+            border-color: #10b981;
+        }
+
+        .about-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background-color: #f1f5f9;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .about-card h3 {
+            font-size: 1.15rem;
+            color: #0f172a;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* SEÇÃO RECURSOS */
+        .features-section {
+            padding: 3rem 6% 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .feature-card {
+            background-color: #ffffff;
+            padding: 2.2rem 1.8rem;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #10b981;
+            box-shadow: 0 12px 30px rgba(30, 27, 75, 0.08);
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            background-color: #f1f5f9;
+            color: #1e1b4b;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            color: #0f172a;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        /* SEÇÃO FAQ */
+        .faq-section {
+            padding: 4rem 6%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            background-color: #ffffff;
+            padding: 1.8rem;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.02);
+        }
+
+        .faq-item h3 {
+            font-size: 1.1rem;
+            color: #0f172a;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CHAMADA FINAL */
+        .quote-section {
+            background-color: #ffffff;
+            padding: 3.5rem 6%;
+            margin: 3rem auto;
+            max-width: 750px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            border-top: 5px solid #1e1b4b;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.05);
+            text-align: center;
+        }
+
+        .quote-section h2 {
+            font-size: 2.1rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+        }
+
+        .quote-section p {
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        /* CONTATO & SOCIAIS */
+        .contact {
+            padding: 4rem 6% 2rem;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+        }
+
+        .contact p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-boxes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .contact-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: #ffffff;
+            padding: 0.8rem 1.4rem;
+            border-radius: 12px;
+            border: 1px solid #10b981;
+            color: #059669;
+            font-weight: 700;
+            font-size: 1rem;
+            line-height: 1;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.12);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .contact-icon {
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            min-height: 30px;
+            fill: currentColor;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            background-color: #ffffff;
+            margin-top: 4rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 900px) {
+            .desktop-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .btn-login {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body id="inicio">
+
+    <!-- DRAWER OVERLAY MOBILE -->
+    <div class="backdrop" id="backdrop" onclick="toggleMenu()"></div>
+    <div class="nav-overlay" id="navOverlay" aria-hidden="true">
+        <button class="close-btn" type="button" onclick="toggleMenu()" aria-label="Fechar menu">&times;</button>
+        <nav class="menu-links">
+            <a href="#inicio" onclick="toggleMenu()">Página Inicial</a>
+            <a href="#sobre" onclick="toggleMenu()">Sobre o App</a>
+            <a href="#recursos" onclick="toggleMenu()">Recursos</a>
+            <a href="#faq" onclick="toggleMenu()">Perguntas Frequentes</a>
+            <a href="#contato" onclick="toggleMenu()">Contato</a>
+            <a href="https://app.useorcafacilapp.com.br" class="highlight-link">Criar Orçamento</a>
+        </nav>
+    </div>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="logo">Use <span>OrçaFácil</span>App</div>
+
+        <!-- NAVEGAÇÃO DESKTOP -->
+        <nav class="desktop-nav">
+            <a href="#sobre">Sobre</a>
+            <a href="#recursos">Recursos</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="https://app.useorcafacilapp.com.br" class="btn-login">Entrar</a>
+            <a href="https://app.useorcafacilapp.com.br" class="btn-signup">Criar Orçamento</a>
+            <button class="menu-icon" type="button" onclick="toggleMenu()" title="Abrir menu" aria-label="Abrir menu"
+                aria-controls="navOverlay" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <div class="hero-wrapper">
+        <section class="hero">
+            <div class="hero-badge">⚡ Gestão simples e sem burocracia</div>
+            <h1>Orçamentos profissionais em PDF <span>em menos de 1 minuto</span></h1>
+            <p>Passe mais credibilidade aos seus clientes com documentos limpos e organizados. Acesso imediato,
+                diretamente do seu celular ou computador.</p>
+            <a href="https://app.useorcafacilapp.com.br" class="btn-primary">Criar Orçamento Agora</a>
+        </section>
+    </div>
+
+    <!-- SEÇÃO SOBRE O APP -->
+    <section class="about-section" id="sobre">
+        <div class="section-header">
+            <span class="section-tag">Transparência & Agilidade</span>
+            <h2>Por que usar o OrçaFácil?</h2>
+            <p>A forma mais rápida de transmitir profissionalismo aos seus clientes.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-icon">🎯</div>
+                <h3>Foco na Conversão</h3>
+                <p>Orçamentos limpos e organizados passam segurança imediata, ajudando você a fechar mais serviços.</p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">🚀</div>
+                <h3>Sem Cadastro Chato</h3>
+                <p>Abra o app, preencha os dados e baixe o PDF. Sem perder tempo com formulários extensos.</p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">📲</div>
+                <h3>Pronto para o WhatsApp</h3>
+                <p>Gere o PDF em tamanho A4 ideal e compartilhe diretamente pelo seu celular ou computador.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO RECURSOS -->
+    <section class="features-section" id="recursos">
+        <div class="section-header">
+            <span class="section-tag">Funcionalidades</span>
+            <h2>Tudo o que você precisa para impressionar seu cliente</h2>
+            <p>Recursos práticos e sem enrolação, pensados para o seu dia a dia.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3>PDF Profissional e A4</h3>
+                <p>Layout padronizado, limpo e perfeitamente centralizado em tamanho A4, pronto para impressão ou envio
+                    digital.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Cálculo Automático</h3>
+                <p>Adicione itens, quantidades e valores unitários. O aplicativo calcula os subtotais e o total geral
+                    sem erros.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3>Dados Personalizados</h3>
+                <p>Insira facilmente os dados da sua empresa ou serviço autônomo, além das informações e contatos do seu
+                    cliente.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>Observações & Condições</h3>
+                <p>Defina prazos de entrega, formas de pagamento e garantias de maneira clara no rodapé do orçamento.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Multiplataforma</h3>
+                <p>Use no celular, tablet ou computador. A interface se adapta perfeitamente a qualquer tamanho de tela.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Assinatura Acessível e Sem Fidelidade</h3>
+                <p>Apenas R$ 14,90 por mês para gerar orçamentos ilimitados. Não tem renovação automática, fidelidade e
+                    nem multa. Você tem o controle total!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO FAQ (PERGUNTAS FREQUENTES) -->
+    <section class="faq-section" id="faq">
+        <div class="section-header">
+            <span class="section-tag">Dúvidas Frequentes</span>
+            <h2>Como o UseOrçaFácil funciona?</h2>
+            <p>Respostas simples para as perguntas mais comuns sobre a plataforma.</p>
+        </div>
+
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>❓ Preciso instalar algum aplicativo no celular ou computador?</h3>
+                <p>Não. O UseOrçaFácil é 100% online e roda diretamente no seu navegador. Você pode acessar de qualquer
+                    celular, tablet ou computador sem ocupar memória do seu dispositivo.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>❓ Como o orçamento é entregue ao meu cliente?</h3>
+                <p>O aplicativo gera instantaneamente um arquivo PDF padronizado no formato A4. Você pode baixar o
+                    documento e enviá-lo diretamente pelo WhatsApp, e-mail ou até mesmo imprimir.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>❓ Como funciona o cálculo dos valores?</h3>
+                <p>Os cálculos são totalmente automáticos. Conforme você adiciona os itens, quantidades e valores
+                    unitários, o sistema calcula os subtotais e o total geral do orçamento sem risco de erros manuais.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>❓ Posso personalizar com os dados da minha empresa?</h3>
+                <p>Sim. Você insere o nome do seu negócio, contatos, dados do cliente, além de observações
+                    personalizadas como prazos de entrega, garantia e condições de pagamento no rodapé.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>❓ Há contrato de fidelidade ou multa para cancelamento?</h3>
+                <p>Nenhum. A assinatura custa R$ 14,90/mês para uso ilimitado e perto da data de renovação, enviamos
+                    apenas um aviso. Você pode renovar manualmente, o controle é todo seu!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHAMADA FINAL PARA AÇÃO -->
+    <section class="quote-section">
+        <h2>Experimente Agora</h2>
+        <p>Crie o seu primeiro orçamento profissional em menos de 1 minuto:</p>
+        <a href="https://app.useorcafacilapp.com.br" class="btn-primary">Criar Orçamento Agora</a>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="contact" id="contato">
+        <h2>Dúvidas ou sugestões?</h2>
+        <p>Fale diretamente com a nossa equipe pelos canais oficiais:</p>
+
+        <div class="contact-boxes">
+            <a href="mailto:useorcafacilapp@gmail.com" class="contact-box">
+                <svg class="contact-icon" viewBox="0 0 24 24">
+                    <path
+                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                useorcafacilapp@gmail.com
+            </a>
+
+            <a href="https://instagram.com/useorcafacilapp" target="_blank" rel="noopener noreferrer"
+                class="contact-box">
+                <svg class="contact-icon" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+                @useorcafacilapp
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Use OrçaFácil App. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        function toggleMenu() {
+            const overlay = document.getElementById('navOverlay');
+            const backdrop = document.getElementById('backdrop');
+            const menuButton = document.querySelector('.menu-icon');
+            const isOpen = overlay.classList.toggle('active');
+            backdrop.classList.toggle('active', isOpen);
+            menuButton.setAttribute('aria-expanded', isOpen);
+            overlay.setAttribute('aria-hidden', !isOpen);
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && document.getElementById('navOverlay').classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+# Sistema operacional e editores
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Dependências e saídas locais
+node_modules/
+dist/
+build/
+coverage/
+
+# Variáveis de ambiente e arquivos locais
+.env
+.env.*
+!.env.example
