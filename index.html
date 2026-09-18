@@ -271,9 +271,16 @@
         .hero p {
             font-size: 1.2rem;
             color: #cbd5e1;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             max-width: 640px;
             font-weight: 400;
+        }
+
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
         }
 
         .btn-primary {
@@ -294,6 +301,20 @@
             transform: translateY(-2px);
             background-color: #059669;
             box-shadow: 0 14px 30px rgba(16, 185, 129, 0.45);
+        }
+
+        .cta-subtext {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .cta-subtext span {
+            color: #34d399;
+            font-weight: 700;
         }
 
         /* SEÇÃO SOBRE */
@@ -598,7 +619,7 @@
             <a href="#recursos" onclick="toggleMenu()">Recursos</a>
             <a href="#faq" onclick="toggleMenu()">Perguntas Frequentes</a>
             <a href="#contato" onclick="toggleMenu()">Contato</a>
-            <a href="https://app.useorcafacilapp.com.br" class="highlight-link">Criar Orçamento</a>
+            <a href="https://app.useorcafacilapp.com.br" class="highlight-link">Criar Orçamento Grátis</a>
         </nav>
     </div>
 
@@ -616,7 +637,7 @@
 
         <div class="header-actions">
             <a href="https://app.useorcafacilapp.com.br" class="btn-login">Entrar</a>
-            <a href="https://app.useorcafacilapp.com.br" class="btn-signup">Criar Orçamento</a>
+            <a href="https://app.useorcafacilapp.com.br" class="btn-signup">Testar Grátis</a>
             <button class="menu-icon" type="button" onclick="toggleMenu()" title="Abrir menu" aria-label="Abrir menu"
                 aria-controls="navOverlay" aria-expanded="false">
                 <span></span>
@@ -629,11 +650,14 @@
     <!-- HERO SECTION -->
     <div class="hero-wrapper">
         <section class="hero">
-            <div class="hero-badge">⚡ Gestão simples e sem burocracia</div>
+            <div class="hero-badge">⚡ Cadastro 100% Gratuito • 3 PDFs sem Custo</div>
             <h1>Orçamentos profissionais em PDF <span>em menos de 1 minuto</span></h1>
             <p>Passe mais credibilidade aos seus clientes com documentos limpos e organizados. Acesso imediato,
                 diretamente do seu celular ou computador.</p>
-            <a href="https://app.useorcafacilapp.com.br" class="btn-primary">Criar Orçamento Agora</a>
+            <div class="cta-container">
+                <a href="https://app.useorcafacilapp.com.br" class="btn-primary">Criar Orçamento Agora</a>
+                <p class="cta-subtext">🎁 <span>3 PDFs grátis</span> ao se cadastrar • Não pede cartão de crédito</p>
+            </div>
         </section>
     </div>
 
@@ -712,9 +736,9 @@
 
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
-                <h3>Assinatura Acessível e Sem Fidelidade</h3>
-                <p>Apenas R$ 14,90 por mês para gerar orçamentos ilimitados. Não tem renovação automática, fidelidade e
-                    nem multa. Você tem o controle total!</p>
+                <h3>Teste Grátis & Assinatura Justa</h3>
+                <p>Comece com <strong>3 PDFs grátis</strong>. Se gostar, assine por apenas R$ 14,90/mês para gerar
+                    orçamentos ilimitados, sem renovação automática e sem fidelidade.</p>
             </div>
         </div>
     </section>
@@ -728,6 +752,18 @@
         </div>
 
         <div class="faq-grid">
+            <div class="faq-item">
+                <h3>❓ O cadastro é realmente gratuito? Preciso de cartão?</h3>
+                <p>Sim! O cadastro é 100% gratuito e você ganha 3 orçamentos em PDF sem nenhum custo. Não solicitamos
+                    cartão de crédito nem dados bancários para testar.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>❓ O que acontece após eu utilizar os 3 PDFs grátis?</h3>
+                <p>Após experimentar seus 3 orçamentos gratuitos, você poderá assinar o plano ilimitado por apenas R$
+                    14,90/mês para continuar gerando quantos PDFs precisar. Sem pegadinhas nem renovação automática.</p>
+            </div>
+
             <div class="faq-item">
                 <h3>❓ Preciso instalar algum aplicativo no celular ou computador?</h3>
                 <p>Não. O UseOrçaFácil é 100% online e roda diretamente no seu navegador. Você pode acessar de qualquer
@@ -748,24 +784,20 @@
             </div>
 
             <div class="faq-item">
-                <h3>❓ Posso personalizar com os dados da minha empresa?</h3>
-                <p>Sim. Você insere o nome do seu negócio, contatos, dados do cliente, além de observações
-                    personalizadas como prazos de entrega, garantia e condições de pagamento no rodapé.</p>
-            </div>
-
-            <div class="faq-item">
                 <h3>❓ Há contrato de fidelidade ou multa para cancelamento?</h3>
-                <p>Nenhum. A assinatura custa R$ 14,90/mês para uso ilimitado e perto da data de renovação, enviamos
-                    apenas um aviso. Você pode renovar manualmente, o controle é todo seu!</p>
+                <p>Nenhum. Você tem o controle total de quando quer renovar. Quando seu plano estiver perto do fim,
+                    apenas enviamos um aviso e você decide se deseja renovar.</p>
             </div>
         </div>
     </section>
 
     <!-- CHAMADA FINAL PARA AÇÃO -->
     <section class="quote-section">
-        <h2>Experimente Agora</h2>
-        <p>Crie o seu primeiro orçamento profissional em menos de 1 minuto:</p>
-        <a href="https://app.useorcafacilapp.com.br" class="btn-primary">Criar Orçamento Agora</a>
+        <h2>Experimente sem pagar nada</h2>
+        <p>Crie o seu primeiro orçamento profissional em menos de 1 minuto (3 PDFs grátis inclusos):</p>
+        <div class="cta-container">
+            <a href="https://app.useorcafacilapp.com.br" class="btn-primary">Criar Orçamento Grátis</a>
+        </div>
     </section>
 
     <!-- CONTATO -->
