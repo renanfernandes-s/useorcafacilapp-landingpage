@@ -2,38 +2,47 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#011e3e">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#011e3e" />
     <meta name="description"
-        content="Gestão simples e rápida de orçamentos em PDF para prestadores de serviço e autônomos.">
+        content="Gestão simples e rápida de orçamentos em PDF para prestadores de serviço e autônomos." />
+    <link rel="manifest" href="site.webmanifest" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>Use OrçaFácil App | Gestão Simples de Orçamentos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Use OrçaFácil App | Orçamentos profissionais com praticidade</title>
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="icons/favicon-96x96.png?v=2" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="icons/favicon.svg?v=2" />
-<link rel="shortcut icon" href="icons/favicon.ico?v=2" />
-<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png?v=2" />
-<link rel="manifest" href="site.webmanifest?v=2" />
+    <link rel="icon" href="icons/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="icons/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
 
-    <!-- Fonte Inter -->    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <!-- Fonte Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
 
     <style>
         /* =====================================================
            GUIA DE ESTILO E PALETA OFICIAL - ORÇAFÁCIL APP
-           Azul Noturno: #0f172a | Azul Indigo: #1e1b4b
-           Verde Esmeralda: #10b981 | Fundo Gelo: #f8fafc
            ===================================================== */
+        :root {
+            --primary-dark: #011e3e;
+            --primary-indigo: #1e1b4b;
+            --accent-green: #10b981;
+            --accent-green-hover: #059669;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #011e3e;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         html {
@@ -41,8 +50,8 @@
         }
 
         body {
-            background-color: #f8fafc;
-            color: #011e3e;
+            background-color: var(--bg-light);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
@@ -80,7 +89,7 @@
         }
 
         .logo span {
-            color: #10b981;
+            color: var(--accent-green);
         }
 
         .desktop-nav {
@@ -141,10 +150,10 @@
         }
 
         .menu-icon:hover span {
-            background-color: #10b981;
+            background-color: var(--accent-green);
         }
 
-        /* DRAWER MENU MOBILE */
+        /* DRAWER OVERLAY MOBILE */
         .nav-overlay {
             position: fixed;
             top: 0;
@@ -160,6 +169,10 @@
             flex-direction: column;
         }
 
+        .nav-overlay[hidden] {
+            display: none;
+        }
+
         .nav-overlay.active {
             right: 0;
         }
@@ -168,7 +181,7 @@
             align-self: flex-end;
             font-size: 1.8rem;
             cursor: pointer;
-            color: #64748b;
+            color: var(--text-muted);
             background: none;
             border: none;
             margin-bottom: 2rem;
@@ -188,11 +201,11 @@
         }
 
         .menu-links a:hover {
-            color: #1e1b4b;
+            color: var(--primary-indigo);
         }
 
         .menu-links a.highlight-link {
-            color: #10b981;
+            color: var(--accent-green);
             font-weight: 800;
         }
 
@@ -212,53 +225,80 @@
             display: block;
         }
 
-        /* HERO SECTION */
+        /* HERO SECTION CENTRALIZADA E RETANGULAR */
         .hero-wrapper {
             background: linear-gradient(180deg, #011e3e 0%, #0f172a 65%, #f8fafc 100%);
-            padding: 5rem 1.5rem 6rem;
+            padding: 2.5rem 1.5rem 3rem;
             color: #ffffff;
             text-align: center;
         }
 
         .hero {
-            max-width: 880px;
+            max-width: 1100px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
+        /* BADGE COM PONTO PULSANTE (STATUS DOT) */
         .hero-badge {
-            background-color: rgba(16, 185, 129, 0.15);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            color: #34d399;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #064e3b;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #ecfdf5;
             font-size: 0.85rem;
             font-weight: 700;
             padding: 0.4rem 1rem;
             border-radius: 50px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 0 rgba(52, 211, 153, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 6px rgba(52, 211, 153, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+            }
+        }
+
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3.4rem;
             font-weight: 900;
-            margin-bottom: 1.2rem;
-            line-height: 1.15;
+            margin-bottom: 1rem;
+            line-height: 1.1;
             letter-spacing: -1px;
+            max-width: 1050px;
         }
 
         .hero h1 span {
-            color: #10b981;
+            color: var(--accent-green);
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #cbd5e1;
-            margin-bottom: 2rem;
-            max-width: 640px;
+            margin-bottom: 1.8rem;
+            max-width: 780px;
             font-weight: 400;
+            line-height: 1.5;
         }
 
         .cta-container {
@@ -266,10 +306,12 @@
             flex-direction: column;
             align-items: center;
             gap: 0.8rem;
+            margin-bottom: 2.5rem;
         }
 
+        /* BOTÃO PRIMARY COM EFEITO GLOW PULSANTE */
         .btn-primary {
-            background-color: #10b981;
+            background-color: var(--accent-green);
             color: #ffffff;
             padding: 1.1rem 2.8rem;
             font-size: 1.1rem;
@@ -280,21 +322,46 @@
             transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
             box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
             display: inline-block;
+            position: relative;
+        }
+
+        .btn-glow {
+            animation: btnPulseGlow 3s infinite;
+        }
+
+        @keyframes btnPulseGlow {
+            0% {
+                box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+            }
+            50% {
+                box-shadow: 0 12px 32px rgba(16, 185, 129, 0.65);
+            }
+            100% {
+                box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+            }
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            background-color: #059669;
-            box-shadow: 0 14px 30px rgba(16, 185, 129, 0.45);
+            background-color: var(--accent-green-hover);
+            box-shadow: 0 14px 30px rgba(16, 185, 129, 0.55);
         }
 
+        /* SUBTEXTO COM ÍCONE CHECK SVG */
         .cta-subtext {
             font-size: 0.9rem;
             color: #94a3b8;
             font-weight: 500;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.4rem;
+        }
+
+        .subtext-icon {
+            width: 18px;
+            height: 18px;
+            fill: #34d399;
+            flex-shrink: 0;
         }
 
         .cta-subtext span {
@@ -302,9 +369,25 @@
             font-weight: 700;
         }
 
-        /* SEÇÃO SOBRE */
-        .about-section {
-            padding: 5rem 6% 3rem;
+        /* MOCKUP HERO CENTRALIZADO ABAIXO DO BOTÃO */
+        .hero-media {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 850px;
+            height: auto;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        /* ESTRUTURA DE SEÇÕES */
+        section {
+            padding: 4rem 6%;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -315,88 +398,39 @@
         }
 
         .section-tag {
-            color: #10b981;
+            color: var(--accent-green);
             font-weight: 800;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: block;
+            margin-bottom: 0.3rem;
         }
 
         .section-header h2 {
             font-size: 2.2rem;
             color: #0f172a;
             font-weight: 900;
-            margin-top: 0.3rem;
         }
 
         .section-header p {
-            color: #64748b;
+            color: var(--text-muted);
             font-size: 1.1rem;
+            margin-top: 0.2rem;
         }
 
-        .about-grid {
+        /* CARDS LIMPOS */
+        .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.8rem;
         }
 
-        .about-card {
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 14px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .about-card:hover {
-            transform: translateY(-4px);
-            border-color: #10b981;
-        }
-
-        .about-icon {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            background-color: #f1f5f9;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-        }
-
-        .about-card h3 {
-            font-size: 1.15rem;
-            color: #0f172a;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .about-card p {
-            color: #64748b;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        /* SEÇÃO RECURSOS */
-        .features-section {
-            padding: 3rem 6% 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.8rem;
-        }
-
-        .feature-card {
-            background-color: #ffffff;
+        .clean-card {
+            background-color: var(--card-bg);
             padding: 2.2rem 1.8rem;
             border-radius: 16px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-color);
             box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
             transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
             display: flex;
@@ -404,36 +438,321 @@
             align-items: flex-start;
         }
 
-        .feature-card:hover {
+        .clean-card:hover {
             transform: translateY(-5px);
-            border-color: #10b981;
+            border-color: var(--accent-green);
             box-shadow: 0 12px 30px rgba(30, 27, 75, 0.08);
         }
 
-        .feature-icon {
-            font-size: 1.8rem;
-            margin-bottom: 1.2rem;
-            background-color: #f1f5f9;
-            color: #1e1b4b;
+        .card-icon-svg {
             width: 52px;
             height: 52px;
+            background-color: #f1f5f9;
+            color: var(--primary-indigo);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
+            margin-bottom: 1.2rem;
         }
 
-        .feature-card h3 {
+        .card-icon-svg svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .clean-card h3 {
             font-size: 1.2rem;
             color: #0f172a;
             font-weight: 800;
             margin-bottom: 0.6rem;
         }
 
-        .feature-card p {
-            color: #64748b;
+        .clean-card p {
+            color: var(--text-muted);
             font-size: 0.95rem;
             line-height: 1.55;
+        }
+
+        /* ESTILOS DA CALCULADORA */
+        .calculator-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .input-group label {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .input-group input {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            transition: border-color 0.2s, outline 0.2s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            background-color: #ffffff;
+        }
+
+        .input-group small {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .calc-btn {
+            width: 100%;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .calc-result-box {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .calc-result-box[hidden] {
+            display: none;
+        }
+
+        .result-header span {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .result-price {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--accent-green-hover);
+            margin: 0.5rem 0;
+        }
+
+        .result-price span {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .result-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 550px;
+            margin: 0 auto 1.2rem;
+            line-height: 1.5;
+        }
+
+        .result-note {
+            background-color: rgba(16, 185, 129, 0.08);
+            border: 1px solid var(--accent-green);
+            color: var(--text-main);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .result-cta {
+            background-color: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            display: inline-block;
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .result-cta p {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* SEÇÃO PLANOS E PREÇOS */
+        .pricing-section {
+            padding: 4rem 6%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+        }
+
+        .pricing-card.featured {
+            background-color: var(--primary-dark);
+            color: #ffffff;
+            border-color: var(--primary-dark);
+            box-shadow: 0 15px 35px rgba(1, 30, 62, 0.2);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-green);
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 0.3rem 1.2rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+        }
+
+        .pricing-card .price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 1.2rem 0;
+            line-height: 1;
+        }
+
+        .pricing-card .price span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .pricing-card.featured .price span {
+            color: #cbd5e1;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 1.5rem 0 2rem;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            font-size: 0.95rem;
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-card.featured .pricing-features li {
+            color: #cbd5e1;
+        }
+
+        .pricing-features li svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent-green);
+            flex-shrink: 0;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--border-color);
+            color: #0f172a;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-align: center;
+            transition: border-color 0.2s, background-color 0.2s;
+            display: block;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-green);
+            background-color: rgba(16, 185, 129, 0.05);
+        }
+
+        /* FAIXA DE SEGURANÇA E GARANTIA NOS PLANOS */
+        .pricing-security {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .security-badge-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .security-badge-item svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent-green);
         }
 
         /* SEÇÃO FAQ */
@@ -451,10 +770,10 @@
         }
 
         .faq-item {
-            background-color: #ffffff;
+            background-color: var(--card-bg);
             padding: 1.8rem;
             border-radius: 14px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-color);
             box-shadow: 0 4px 15px rgba(15, 23, 42, 0.02);
         }
 
@@ -466,20 +785,20 @@
         }
 
         .faq-item p {
-            color: #64748b;
+            color: var(--text-muted);
             font-size: 0.95rem;
             line-height: 1.6;
         }
 
         /* CHAMADA FINAL */
         .quote-section {
-            background-color: #ffffff;
+            background-color: var(--card-bg);
             padding: 3.5rem 6%;
             margin: 3rem auto;
             max-width: 750px;
             border-radius: 20px;
-            border: 1px solid #e2e8f0;
-            border-top: 5px solid #1e1b4b;
+            border: 1px solid var(--border-color);
+            border-top: 5px solid var(--primary-indigo);
             box-shadow: 0 15px 35px rgba(15, 23, 42, 0.05);
             text-align: center;
         }
@@ -492,7 +811,7 @@
         }
 
         .quote-section p {
-            color: #64748b;
+            color: var(--text-muted);
             margin-bottom: 2rem;
         }
 
@@ -510,7 +829,7 @@
         }
 
         .contact p {
-            color: #64748b;
+            color: var(--text-muted);
             margin-bottom: 1.5rem;
         }
 
@@ -528,11 +847,11 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            background-color: #ffffff;
+            background-color: var(--card-bg);
             padding: 0.8rem 1.4rem;
             border-radius: 12px;
-            border: 1px solid #10b981;
-            color: #059669;
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green-hover);
             font-weight: 700;
             font-size: 1rem;
             line-height: 1;
@@ -540,11 +859,16 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
+        .contact-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.2);
+        }
+
         .contact-icon {
-            width: 30px;
-            height: 30px;
-            min-width: 30px;
-            min-height: 30px;
+            width: 24px;
+            height: 24px;
+            min-width: 24px;
+            min-height: 24px;
             fill: currentColor;
             flex-shrink: 0;
             display: block;
@@ -554,11 +878,11 @@
         footer {
             text-align: center;
             padding: 2.5rem;
-            color: #64748b;
+            color: var(--text-muted);
             font-size: 0.9rem;
-            background-color: #ffffff;
+            background-color: var(--card-bg);
             margin-top: 4rem;
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid var(--border-color);
         }
 
         .footer-links {
@@ -576,6 +900,35 @@
 
         .footer-links a:hover {
             text-decoration: underline;
+        }
+
+        .footer-security {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 0.8rem;
+        }
+
+        .footer-security svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--accent-green);
+        }
+
+        /* ANIMAÇÕES DE SCROLL (FADE-IN REVEAL) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @media (max-width: 900px) {
@@ -596,6 +949,11 @@
             .btn-login {
                 display: none;
             }
+
+            .pricing-security {
+                gap: 1rem;
+                flex-direction: column;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -609,41 +967,53 @@
                 transition-duration: 0.01ms !important;
                 animation-duration: 0.01ms !important;
             }
+
+            .btn-glow {
+                animation: none;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
         }
     </style>
 </head>
 
 <body id="inicio">
-
     <!-- DRAWER OVERLAY MOBILE -->
-    <div class="backdrop" id="backdrop" onclick="toggleMenu()"></div>
-    <div class="nav-overlay" id="navOverlay" aria-hidden="true">
-        <button class="close-btn" type="button" onclick="toggleMenu()" aria-label="Fechar menu">&times;</button>
-        <nav class="menu-links">
-            <a href="#inicio" onclick="toggleMenu()">Página Inicial</a>
-            <a href="#sobre" onclick="toggleMenu()">Sobre o App</a>
-            <a href="#recursos" onclick="toggleMenu()">Recursos</a>
-            <a href="#faq" onclick="toggleMenu()">Perguntas Frequentes</a>
-            <a href="#contato" onclick="toggleMenu()">Contato</a>
+    <div class="backdrop" id="backdrop"></div>
+    <aside class="nav-overlay" id="navOverlay" aria-hidden="true" inert hidden>
+        <button class="close-btn" type="button" aria-label="Fechar menu">&times;</button>
+        <nav class="menu-links" aria-label="Navegação principal">
+            <a href="#inicio">Página Inicial</a>
+            <a href="#sobre">Sobre o App</a>
+            <a href="#recursos">Recursos</a>
+            <a href="#calculadora">Calculadora</a>
+            <a href="#planos">Planos</a>
+            <a href="#faq">Perguntas Frequentes</a>
+            <a href="#contato">Contato</a>
             <a href="https://app.useorcafacilapp.com.br" class="highlight-link">Criar Orçamento</a>
         </nav>
-    </div>
+    </aside>
 
     <!-- NAVBAR -->
     <header>
-        <div class="logo">Use <span>OrçaFácil</span>App</div>
+        <div class="logo">Use <span>OrçaFácil</span> App</div>
 
         <!-- NAVEGAÇÃO DESKTOP -->
-        <nav class="desktop-nav">
+        <nav class="desktop-nav" aria-label="Navegação principal">
             <a href="#sobre">Sobre</a>
             <a href="#recursos">Recursos</a>
+            <a href="#calculadora">Calculadora</a>
+            <a href="#planos">Planos</a>
             <a href="#faq">FAQ</a>
             <a href="#contato">Contato</a>
         </nav>
 
         <div class="header-actions">
             <a href="https://app.useorcafacilapp.com.br" class="btn-login">Entrar</a>
-            <button class="menu-icon" type="button" onclick="toggleMenu()" title="Abrir menu" aria-label="Abrir menu"
+            <button class="menu-icon" type="button" title="Abrir menu" aria-label="Abrir menu"
                 aria-controls="navOverlay" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -652,43 +1022,77 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION CENTRALIZADA E RETANGULAR -->
     <div class="hero-wrapper">
         <section class="hero">
-            <div class="hero-badge">⚡ Cadastro 100% Gratuito • 3 PDFs sem Custo</div>
+            <div class="hero-badge">
+                <span class="status-dot"></span>
+                Cadastro 100% Gratuito • 3 PDFs sem Custo
+            </div>
             <h1>Orçamentos profissionais em PDF <span>de forma rápida e prática</span></h1>
             <p>Passe mais credibilidade aos seus clientes com documentos limpos e organizados. Acesso imediato,
                 diretamente do seu celular ou computador.</p>
             <div class="cta-container">
-                <a href="https://app.useorcafacilapp.com.br" class="btn-primary">Criar Orçamento Agora</a>
-                <p class="cta-subtext">🎁 <span>3 PDFs grátis</span> ao se cadastrar </p>
+                <a href="https://app.useorcafacilapp.com.br" class="btn-primary btn-glow">Criar Orçamento Agora</a>
+                <p class="cta-subtext">
+                    <svg class="subtext-icon" viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                    </svg>
+                    <span>3 PDFs grátis</span> ao se cadastrar
+                </p>
+            </div>
+
+            <!-- MOCKUP NO HERO -->
+            <div class="hero-media">
+                <img
+                    src="mockup/hero-mockup-1.webp"
+                    alt="Mockup do Use OrçaFácil App gerando orçamento em PDF"
+                    width="1200"
+                    height="800"
+                    fetchpriority="high"
+                    class="hero-img"
+                />
             </div>
         </section>
     </div>
 
     <!-- SEÇÃO SOBRE O APP -->
-    <section class="about-section" id="sobre">
-        <div class="section-header">
+    <section id="sobre">
+        <div class="section-header reveal">
             <span class="section-tag">Transparência & Agilidade</span>
             <h2>Por que usar o OrçaFácil?</h2>
             <p>A forma mais rápida de transmitir profissionalismo aos seus clientes.</p>
         </div>
 
-        <div class="about-grid">
-            <div class="about-card">
-                <div class="about-icon">🎯</div>
+        <div class="grid-cards">
+            <div class="clean-card reveal">
+                <div class="card-icon-svg">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z" />
+                    </svg>
+                </div>
                 <h3>Foco na Conversão</h3>
                 <p>Orçamentos limpos e organizados passam segurança imediata, ajudando você a fechar mais serviços.</p>
             </div>
 
-            <div class="about-card">
-                <div class="about-icon">🚀</div>
+            <div class="clean-card reveal">
+                <div class="card-icon-svg">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M13 3L6 14h5v7l7-11h-5z" />
+                    </svg>
+                </div>
                 <h3>Sem Cadastro Chato</h3>
                 <p>Abra o app, preencha os dados e baixe o PDF. Sem perder tempo com formulários extensos.</p>
             </div>
 
-            <div class="about-card">
-                <div class="about-icon">📲</div>
+            <div class="clean-card reveal">
+                <div class="card-icon-svg">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
+                    </svg>
+                </div>
                 <h3>Pronto para o WhatsApp</h3>
                 <p>Gere o PDF em tamanho A4 ideal e compartilhe diretamente pelo seu celular ou computador.</p>
             </div>
@@ -696,100 +1100,301 @@
     </section>
 
     <!-- SEÇÃO RECURSOS -->
-    <section class="features-section" id="recursos">
-        <div class="section-header">
+    <section id="recursos">
+        <div class="section-header reveal">
             <span class="section-tag">Funcionalidades</span>
             <h2>Tudo o que você precisa para impressionar seu cliente</h2>
             <p>Recursos práticos e sem enrolação, pensados para o seu dia a dia.</p>
         </div>
 
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📄</div>
+        <div class="grid-cards">
+            <div class="clean-card reveal">
+                <div class="card-icon-svg">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                    </svg>
+                </div>
                 <h3>PDF Profissional e A4</h3>
                 <p>Layout padronizado, limpo e perfeitamente centralizado em tamanho A4, pronto para impressão ou envio
                     digital.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
+            <div class="clean-card reveal">
+                <div class="card-icon-svg">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+                    </svg>
+                </div>
                 <h3>Cálculo Automático</h3>
                 <p>Adicione itens, quantidades e valores unitários. O aplicativo calcula os subtotais e o total geral
                     sem erros.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🏢</div>
+            <div class="clean-card reveal">
+                <div class="card-icon-svg">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </div>
                 <h3>Dados Personalizados</h3>
                 <p>Insira facilmente os dados da sua empresa ou serviço autônomo, além das informações e contatos do seu
                     cliente.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">📝</div>
+            <div class="clean-card reveal">
+                <div class="card-icon-svg">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                    </svg>
+                </div>
                 <h3>Observações & Condições</h3>
-                <p>Defina prazos de entrega, formas de pagamento e garantias de maneira clara no rodapé do orçamento.
-                </p>
+                <p>Defina prazos de entrega, formas de pagamento e garantias de maneira clara no rodapé do orçamento.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
+            <div class="clean-card reveal">
+                <div class="card-icon-svg">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z" />
+                    </svg>
+                </div>
                 <h3>Multiplataforma</h3>
-                <p>Use no celular, tablet ou computador. A interface se adapta perfeitamente a qualquer tamanho de tela.
-                </p>
+                <p>Use no celular, tablet ou computador. A interface se adapta perfeitamente a qualquer tamanho de tela.</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
+            <div class="clean-card reveal">
+                <div class="card-icon-svg">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+                    </svg>
+                </div>
                 <h3>Teste Grátis & Assinatura Justa</h3>
-                <p>Comece com <strong>3 PDFs grátis</strong>. Se gostar, assine por apenas R$ 14,90/mês para gerar
-                    orçamentos ilimitados, sem renovação automática e sem fidelidade.</p>
+                <p>Comece com 3 PDFs grátis. Se gostar, assine por apenas R$ 14,90/mês para gerar orçamentos ilimitados,
+                    sem renovação automática.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO CALCULADORA DE MÃO DE OBRA -->
+    <section id="calculadora">
+        <div class="section-header reveal">
+            <span class="section-tag">Ferramenta Prática</span>
+            <h2>Calculadora de Valor da Mão de Obra</h2>
+            <p>Trabalha cobrando por hora? Descubra o valor ideal da sua mão de obra para cobrir seus custos e atingir sua meta financeira.</p>
+        </div>
+
+        <div class="calculator-container reveal">
+            <form id="calcForm">
+                <div class="calc-grid">
+                    <div class="input-group">
+                        <label for="rendaDesejada">Sua meta de renda mensal (R$)</label>
+                        <input type="number" id="rendaDesejada" placeholder="Ex: 4000" min="1" step="0.01" required />
+                        <small>Quanto você quer colocar no bolso por mês.</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="custosFixos">Seus custos fixos de trabalho (R$)</label>
+                        <input type="number" id="custosFixos" placeholder="Ex: 500" min="0" step="0.01" value="0" />
+                        <small>Gastos mensais para trabalhar (MEI, internet, combustível, etc.).</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="diasTrabalhados">Dias trabalhados por semana</label>
+                        <input type="number" id="diasTrabalhados" placeholder="Ex: 5" min="1" max="7" value="5" required />
+                        <small>Quantidade de dias que você atende clientes.</small>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="horasPorDia">Horas trabalhadas por dia</label>
+                        <input type="number" id="horasPorDia" placeholder="Ex: 8" min="1" max="16" value="8" required />
+                        <small>Horas diárias dedicadas à execução dos serviços.</small>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary calc-btn">Calcular Minha Hora</button>
+            </form>
+
+            <!-- RESULTADO DO CÁLCULO -->
+            <div class="calc-result-box" id="calcResultBox" aria-live="polite" aria-atomic="true" hidden>
+                <div class="result-header">
+                    <span>Valor Base da Sua Mão de Obra</span>
+                    <div class="result-price" id="valorHoraResultado">
+                        <span id="valorHoraValor">R$ 0,00</span>
+                        <span>/ hora de mão de obra</span>
+                    </div>
+                </div>
+
+                <p class="result-description" id="resumoCalculo">
+                    Esta é uma estimativa inicial, considerando a renda desejada e os custos fixos informados.
+                </p>
+
+                <div class="result-note">
+                    💡 <strong>Importante:</strong> Esta estimativa não inclui impostos, materiais, deslocamentos ou períodos sem serviço. Considere esses valores ao definir seu preço final.
+                </div>
+
+                <div class="result-cta">
+                    <p>Pronto para montar um orçamento completo?</p>
+                    <a href="https://app.useorcafacilapp.com.br" class="btn-primary">Criar Orçamento Agora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO PLANOS E PREÇOS -->
+    <section class="pricing-section" id="planos">
+        <div class="section-header reveal">
+            <span class="section-tag">Planos sem Pegadinhas</span>
+            <h2>Escolha o plano ideal para o seu momento</h2>
+            <p>Comece gratuitamente e evolua sem contratos de fidelidade.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- PLANO GRATUITO -->
+            <div class="pricing-card reveal">
+                <h3>Degustação</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem">Ideal para testar na prática</p>
+                <div class="price">R$ 0 <span>/3 PDFs</span></div>
+
+                <ul class="pricing-features">
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        <strong>3 PDFs gratuitos</strong> inclusos
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Cálculos e totais automáticos
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Sem pedir cartão de crédito
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Gerador instantâneo no navegador
+                    </li>
+                </ul>
+
+                <a href="https://app.useorcafacilapp.com.br" class="btn-outline">Testar Gratuitamente</a>
+            </div>
+
+            <!-- PLANO ILIMITADO (DESTAQUE) -->
+            <div class="pricing-card featured reveal">
+                <div class="pricing-badge">Recomendado</div>
+                <h3>Profissional Ilimitado</h3>
+                <p style="color: #cbd5e1; font-size: 0.9rem">Para quem gera orçamentos toda semana</p>
+                <div class="price">
+                    R$ 14,90 <span style="color: #cbd5e1">/mês</span>
+                </div>
+
+                <ul class="pricing-features">
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        <strong>PDFs Ilimitados</strong> todos os meses
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        <strong>Sem renovação automática</strong>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Sem multa ou contrato de fidelidade
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Suporte por e-mail, redes sociais e whatsapp
+                    </li>
+                </ul>
+
+                <a href="https://app.useorcafacilapp.com.br" class="btn-primary"
+                    style="text-align: center; display: block">Assinar Plano Ilimitado</a>
+            </div>
+        </div>
+
+        <!-- INDICADORES DE SEGURANÇA NOS PLANOS -->
+        <div class="pricing-security reveal">
+            <a href="privacidade.html" class="security-badge-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                </svg>
+                Política de privacidade disponível
+            </a>
+            <div class="security-badge-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm0-4h-2V7h2v5z" />
+                </svg>
+                Pagamentos processados pelo Asaas
+            </div>
+            <div class="security-badge-item">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                </svg>
+                Cancelamento Fácil Sem Fidelidade
             </div>
         </div>
     </section>
 
     <!-- SEÇÃO FAQ (PERGUNTAS FREQUENTES) -->
     <section class="faq-section" id="faq">
-        <div class="section-header">
+        <div class="section-header reveal">
             <span class="section-tag">Dúvidas Frequentes</span>
             <h2>Como o UseOrçaFácil funciona?</h2>
             <p>Respostas simples para as perguntas mais comuns sobre a plataforma.</p>
         </div>
 
         <div class="faq-grid">
-            <div class="faq-item">
-                <h3>❓ O cadastro é realmente gratuito? Preciso de cartão?</h3>
+            <div class="faq-item reveal">
+                <h3>O cadastro é realmente gratuito? Preciso de cartão?</h3>
                 <p>Sim! O cadastro é 100% gratuito e você ganha 3 orçamentos em PDF sem nenhum custo. Não solicitamos
                     cartão de crédito nem dados bancários para testar.</p>
             </div>
 
-            <div class="faq-item">
-                <h3>❓ O que acontece após eu utilizar os 3 PDFs grátis?</h3>
+            <div class="faq-item reveal">
+                <h3>O que acontece após eu utilizar os 3 PDFs grátis?</h3>
                 <p>Após experimentar seus 3 orçamentos gratuitos, você poderá assinar o plano ilimitado por apenas R$
                     14,90/mês para continuar gerando quantos PDFs precisar. Sem pegadinhas nem renovação automática.</p>
             </div>
 
-            <div class="faq-item">
-                <h3>❓ Preciso instalar algum aplicativo no celular ou computador?</h3>
+            <div class="faq-item reveal">
+                <h3>Preciso instalar algum aplicativo no celular ou computador?</h3>
                 <p>Não. O UseOrçaFácil é 100% online e roda diretamente no seu navegador. Você pode acessar de qualquer
                     celular, tablet ou computador sem ocupar memória do seu dispositivo.</p>
             </div>
 
-            <div class="faq-item">
-                <h3>❓ Como o orçamento é entregue ao meu cliente?</h3>
+            <div class="faq-item reveal">
+                <h3>Como o orçamento é entregue ao meu cliente?</h3>
                 <p>O aplicativo gera instantaneamente um arquivo PDF padronizado no formato A4. Você pode baixar o
                     documento e enviá-lo diretamente pelo WhatsApp, e-mail ou até mesmo imprimir.</p>
             </div>
 
-            <div class="faq-item">
-                <h3>❓ Como funciona o cálculo dos valores?</h3>
+            <div class="faq-item reveal">
+                <h3>Como funciona o cálculo dos valores?</h3>
                 <p>Os cálculos são totalmente automáticos. Conforme você adiciona os itens, quantidades e valores
-                    unitários, o sistema calcula os subtotais e o total geral do orçamento sem risco de erros manuais.
-                </p>
+                    unitários, o sistema calcula os subtotais e o total geral do orçamento sem risco de erros manuais.</p>
             </div>
 
-            <div class="faq-item">
-                <h3>❓ Há contrato de fidelidade ou multa para cancelamento?</h3>
+            <div class="faq-item reveal">
+                <h3>Há contrato de fidelidade ou multa para cancelamento?</h3>
                 <p>Nenhum. Você tem o controle total de quando quer renovar. Quando seu plano estiver perto do fim,
                     apenas enviamos um aviso e você decide se deseja renovar.</p>
             </div>
@@ -797,11 +1402,11 @@
     </section>
 
     <!-- CHAMADA FINAL PARA AÇÃO -->
-    <section class="quote-section">
+    <section class="quote-section reveal">
         <h2>Experimente sem pagar nada</h2>
         <p>Crie o seu primeiro orçamento profissional (3 PDFs grátis inclusos):</p>
         <div class="cta-container">
-            <a href="https://app.useorcafacilapp.com.br" class="btn-primary">Criar Orçamento Grátis</a>
+            <a href="https://app.useorcafacilapp.com.br" class="btn-primary btn-glow">Criar Orçamento Grátis</a>
         </div>
     </section>
 
@@ -825,10 +1430,10 @@
                     <path
                         d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                 </svg>
-                @useorcafacilapp
+                Instagram
             </a>
-            <!-- ADICIONADO: BOTAO DO FACEBOOK -->
-            <a href="https://www.facebook.com/profile.php?id=61594741923054&locale=pt_BR" target="_blank"
+
+            <a href="https://www.facebook.com/useorcafacilapp/" target="_blank"
                 rel="noopener noreferrer" class="contact-box">
                 <svg class="contact-icon" viewBox="0 0 24 24">
                     <path
@@ -846,26 +1451,15 @@
             <a href="termos-de-servico.html">Termos de Serviço</a>
         </nav>
         <p>&copy; 2026 Use OrçaFácil App. Todos os direitos reservados.</p>
+        <div class="footer-security">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+            </svg>
+            Confira o domínio oficial antes de acessar sua conta.
+        </div>
     </footer>
 
-    <!-- SCRIPTS -->
-    <script>
-        function toggleMenu() {
-            const overlay = document.getElementById('navOverlay');
-            const backdrop = document.getElementById('backdrop');
-            const menuButton = document.querySelector('.menu-icon');
-            const isOpen = overlay.classList.toggle('active');
-            backdrop.classList.toggle('active', isOpen);
-            menuButton.setAttribute('aria-expanded', isOpen);
-            overlay.setAttribute('aria-hidden', !isOpen);
-        }
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && document.getElementById('navOverlay').classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-    </script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>

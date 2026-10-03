@@ -4,12 +4,18 @@ Landing page estática do Use OrçaFácil App.
 
 ## Estrutura
 
-- `index.html`: página principal, pronta para GitHub Pages, Netlify ou Vercel.
-- `assets/`: manifest e ícones da aplicação.
+- `index.html`: conteúdo e estilos da landing page.
+- `assets/legal.css`: estilos compartilhados pelas páginas legais.
+- `icons/`: ícones e favicons usados pelo site e pelo manifesto.
+- `js/main.js`: ponto de entrada dos módulos do navegador.
+- `js/modules/`: calculadora, menu móvel e animações progressivas.
+- `mockup/`: imagem de demonstração da aplicação.
+- `privacidade.html` e `termos-de-servico.html`: páginas legais.
+- `site.webmanifest`: metadados e ícones para instalação em dispositivos.
 
 ## Desenvolvimento local
 
-Como a página usa apenas HTML, CSS e JavaScript nativo, não há dependências para instalar. Para testar com um servidor local:
+Como a página usa apenas HTML, CSS e módulos JavaScript nativos, não há dependências para instalar. Sirva os arquivos por HTTP (módulos ES não funcionam de forma confiável abrindo `index.html` diretamente):
 
 ```bash
 python3 -m http.server 8000
@@ -25,4 +31,4 @@ Antes de publicar, confirme que os links para `https://app.useorcafacilapp.com.b
 
 ## Segurança e escalabilidade
 
-Esta landing page não processa dados de usuários nem contém backend, credenciais ou segredos. A escalabilidade fica a cargo do CDN do provedor de hospedagem. O aplicativo principal deve tratar autenticação, autorização, pagamentos, dados pessoais e cabeçalhos de segurança separadamente.
+Esta landing page é estática e não contém backend, credenciais ou segredos. A calculadora processa os valores localmente no navegador e não os envia a um servidor. A escalabilidade fica a cargo do CDN do provedor de hospedagem. Configure HTTPS e cabeçalhos de segurança no provedor; autenticação, autorização, pagamentos e dados pessoais devem ser protegidos separadamente no aplicativo principal.
